@@ -112,7 +112,7 @@ public class Util {
 				onSkyblock = stripColor(objective.getDisplayName()).startsWith("SKYBLOCK");
 				scoreboard = objective.getScoreboard();
 				Collection<Score> collection = scoreboard.getSortedScores(objective);
-				List<Score> list = Lists.newArrayList(collection.stream().filter(p_apply_1_ -> p_apply_1_.getPlayerName() != null && !p_apply_1_.getPlayerName().startsWith("#")).collect(Collectors.toList()));
+				List<Score> list = Lists.newArrayList(collection.stream().filter(score -> score.getPlayerName() != null && !score.getPlayerName().startsWith("#")).collect(Collectors.toList()));
 				if (list.size() > 15) {
 					collection = Lists.newArrayList(Iterables.skip(list, collection.size() - 15));
 				} else {
