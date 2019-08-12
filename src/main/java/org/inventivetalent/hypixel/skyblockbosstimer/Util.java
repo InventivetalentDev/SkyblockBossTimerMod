@@ -160,7 +160,7 @@ public class Util {
 		} else {
 			onSkyblock = false;
 		}
-		location = null;
+		location = Location.UNKNOWN;
 	}
 
 	private String getStringOnly(String text) {
