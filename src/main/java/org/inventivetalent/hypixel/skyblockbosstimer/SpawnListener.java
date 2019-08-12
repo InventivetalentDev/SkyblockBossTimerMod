@@ -16,16 +16,15 @@ public class SpawnListener {
 
 	private BossTimerMod mod;
 
-	private int tick              = 1;
-	private int seconds           = 0;
-	public  int blazeSpawnCounter = 0;
-	public  int magmaSpawnCounter = 0;
-	public String username="";
+	private int    tick              = 1;
+	private int    seconds           = 0;
+	public  int    blazeSpawnCounter = 0;
+	public  int    magmaSpawnCounter = 0;
+	public  String username          = "";
 
 	public boolean blazeWaveSpawned = false;
 	public boolean magmaWaveSpawned = false;
 	public boolean magmaBossSpawned = false;
-
 
 	public SpawnListener(BossTimerMod mod) {
 		this.mod = mod;
@@ -37,10 +36,10 @@ public class SpawnListener {
 		if (entity == Minecraft.getMinecraft().thePlayer) {
 			BossTimerMod.logger.info("Joined World!");
 
-			username=Minecraft.getMinecraft().thePlayer.getName();
+			username = Minecraft.getMinecraft().thePlayer.getName();
 		} else if (entity instanceof EntityLiving) {
-			if(mod.util.onSkyblock) {
-//				System.out.println(entity.getName());
+			if (mod.util.onSkyblock) {
+				//				System.out.println(entity.getName());
 				if (mod.util.location == Util.Location.BLAZING_FORTRESS) {
 					if (entity instanceof EntityBlaze) {
 						blazeSpawnCounter++;
@@ -74,7 +73,7 @@ public class SpawnListener {
 	@SubscribeEvent
 	public void on(ClientChatReceivedEvent event) {
 		String message = event.message.getUnformattedText();
-		if(mod.util.onSkyblock&&mod.util.location== Util.Location.BLAZING_FORTRESS) {
+		if (mod.util.onSkyblock && mod.util.location == Util.Location.BLAZING_FORTRESS) {
 			if (message.contains("The Magma Boss is spawning")) {
 				magmaBossSpawned = true;
 			}
@@ -113,17 +112,16 @@ public class SpawnListener {
 			}
 			tick++;
 
-			if (seconds % 30 == 0) {
-				if(mod.util.onSkyblock&&mod.util.location== Util.Location.BLAZING_FORTRESS){
+			if (seconds % 60 == 0) {
+				if (mod.util.onSkyblock) {
+					mod.util.fetchEstimateFromServer();
+				}
+				seconds = 1;
+			} else if (seconds % 30 == 0) {
+				if (mod.util.onSkyblock && mod.util.location == Util.Location.BLAZING_FORTRESS) {
 					mod.util.sendPing(username);
 					seconds++;
 				}
-			}
-			if (seconds % 60 == 0) {
-				if(mod.util.onSkyblock) {
-					mod.util.fetchEstimateFromServer();
-				}
-				seconds=1;
 			}
 
 		}
