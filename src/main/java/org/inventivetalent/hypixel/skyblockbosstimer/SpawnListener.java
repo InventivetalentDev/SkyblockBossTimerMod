@@ -20,10 +20,12 @@ public class SpawnListener {
 	private int seconds           = 0;
 	public  int blazeSpawnCounter = 0;
 	public  int magmaSpawnCounter = 0;
+	public String username="";
 
 	public boolean blazeWaveSpawned = false;
 	public boolean magmaWaveSpawned = false;
 	public boolean magmaBossSpawned = false;
+
 
 	public SpawnListener(BossTimerMod mod) {
 		this.mod = mod;
@@ -34,6 +36,8 @@ public class SpawnListener {
 		Entity entity = event.getEntity();
 		if (entity == Minecraft.getMinecraft().player) {
 			BossTimerMod.logger.info("Joined World!");
+
+			username=Minecraft.getMinecraft().player.getName();
 		} else if (entity instanceof EntityLiving) {
 			if(mod.util.onSkyblock) {
 //				System.out.println(entity.getName());
@@ -93,15 +97,15 @@ public class SpawnListener {
 
 				if (blazeWaveSpawned) {
 					blazeWaveSpawned = false;
-					mod.util.postEventToServer("blaze", Minecraft.getMinecraft().player.getName());
+					mod.util.postEventToServer("blaze", username);
 				}
 				if (magmaWaveSpawned) {
 					magmaWaveSpawned = false;
-					mod.util.postEventToServer("magma", Minecraft.getMinecraft().player.getName());
+					mod.util.postEventToServer("magma", username);
 				}
 				if (magmaBossSpawned) {
 					magmaBossSpawned = false;
-					mod.util.postEventToServer("spawn", Minecraft.getMinecraft().player.getName());
+					mod.util.postEventToServer("spawn", username);
 				}
 
 				tick = 1;
@@ -109,8 +113,16 @@ public class SpawnListener {
 			}
 			tick++;
 
+			if (seconds % 30 == 0) {
+				if(mod.util.onSkyblock&&mod.util.location== Util.Location.BLAZING_FORTRESS){
+					mod.util.sendPing(username);
+					seconds++;
+				}
+			}
 			if (seconds % 60 == 0) {
-				mod.util.fetchEstimateFromServer();
+				if(mod.util.onSkyblock) {
+					mod.util.fetchEstimateFromServer();
+				}
 				seconds=1;
 			}
 

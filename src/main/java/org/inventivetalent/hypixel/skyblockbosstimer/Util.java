@@ -48,7 +48,7 @@ public class Util {
 				try (BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
 					String line;
 					while ((line = in.readLine()) != null) {
-//							BossTimerMod.logger.debug(line);
+						//							BossTimerMod.logger.debug(line);
 						response.append(line);
 					}
 				}
@@ -58,6 +58,26 @@ public class Util {
 				mod.spawnEstimateRelative = responseJson.get("estimateRelative").getAsString();
 			} catch (IOException e) {
 				BossTimerMod.logger.error("Failed to get spawn estimate from server", e);
+			}
+		}).start();
+	}
+
+	public void sendPing(final String username) {
+		new Thread(() -> {
+			BossTimerMod.logger.info("pinging server");
+
+			try {
+				URL url = new URL("https://hypixel.inventivetalent.org/skyblock-magma-timer/ping.php");
+				HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+				connection.setRequestMethod("POST");
+				connection.setRequestProperty("User-Agent", "BossTimerMod/" + BossTimerMod.VERSION);
+
+				String postString = "minecraftUser=" + username + "&lastFocused=" + System.currentTimeMillis() / 1000;
+				//TODO: might wanna keep track on when the player *actually* was active ingame
+
+				doPost(connection, postString);
+			} catch (IOException e) {
+				BossTimerMod.logger.error("Failed to POST event to server", e);
 			}
 		}).start();
 	}
@@ -74,25 +94,30 @@ public class Util {
 
 				String postString = "type=" + event + "&isModRequest=true&minecraftUser=" + username;
 
-				connection.setDoOutput(true);
-				try (DataOutputStream out = new DataOutputStream(connection.getOutputStream())) {
-					out.writeBytes(postString);
-					out.flush();
-				}
-
-				BossTimerMod.logger.info("Got response code " + connection.getResponseCode());
-
-				try (BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
-					String line;
-					while ((line = in.readLine()) != null) {
-						BossTimerMod.logger.info(line);
-					}
-				}
+				doPost(connection, postString);
 			} catch (IOException e) {
 				BossTimerMod.logger.error("Failed to POST event to server", e);
 			}
 		}).start();
 	}
+
+
+	private void doPost(HttpURLConnection connection, String postString) throws IOException {
+		connection.setDoOutput(true);
+		try (DataOutputStream out = new DataOutputStream(connection.getOutputStream())) {
+			out.writeBytes(postString);
+			out.flush();
+		}
+
+		BossTimerMod.logger.info("Got response code " + connection.getResponseCode());
+		try (BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+			String line;
+			while ((line = in.readLine()) != null) {
+				BossTimerMod.logger.info(line);
+			}
+		}
+	}
+
 
 	///// Stuff based on / copied from https://github.com/biscuut/SkyblockAddons/blob/master/src/main/java/codes/biscuit/skyblockaddons/utils/Utils.java
 
