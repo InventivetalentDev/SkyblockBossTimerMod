@@ -85,7 +85,7 @@ public class Util {
 				try (BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
 					String line;
 					while ((line = in.readLine()) != null) {
-						BossTimerMod.logger.debug(line);
+						BossTimerMod.logger.info(line);
 					}
 				}
 			} catch (IOException e) {
