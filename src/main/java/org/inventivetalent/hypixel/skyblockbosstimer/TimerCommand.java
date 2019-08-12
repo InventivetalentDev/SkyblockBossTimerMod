@@ -28,8 +28,8 @@ public class TimerCommand extends CommandBase implements ICommand {
 	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
 		if (args.length == 0) {
-			sender.sendMessage(new TextComponentString("The Magma Boss should spawn " + mod.spawnEstimateRelative));
-			sender.sendMessage(new TextComponentString("https://hypixel.inventivetalent.org/skyblock-magma-timer/"));
+			sender.sendMessage(new TextComponentString("§cThe Magma Boss should spawn " + mod.spawnEstimateRelative));
+			sender.sendMessage(new TextComponentString("§bhttps://hypixel.inventivetalent.org/skyblock-magma-timer/"));
 		}
 	}
 
