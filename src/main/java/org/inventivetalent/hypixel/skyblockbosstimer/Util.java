@@ -72,7 +72,7 @@ public class Util {
 				connection.setRequestMethod("POST");
 				connection.setRequestProperty("User-Agent", "BossTimerMod/" + BossTimerMod.VERSION);
 
-				String postString = "event=" + event + "&isModRequest=true&minecraftUser=" + username;
+				String postString = "type=" + event + "&isModRequest=true&minecraftUser=" + username;
 
 				connection.setDoOutput(true);
 				try (DataOutputStream out = new DataOutputStream(connection.getOutputStream())) {
