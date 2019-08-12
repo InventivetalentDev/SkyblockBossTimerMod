@@ -23,7 +23,8 @@ public class BossTimerMod {
 	public RenderListener renderListener = new RenderListener(this);
 	public Util           util           = new Util(this);
 
-	public long   spawnEstimate         = 0;
+	public long   spawnEstimate
+			= 0;
 	public String spawnEstimateRelative = "";
 
 	@Mod.EventHandler

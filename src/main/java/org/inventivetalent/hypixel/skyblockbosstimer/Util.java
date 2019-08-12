@@ -123,12 +123,12 @@ public class Util {
 
 	public void checkGameAndLocation() { // Most of this is replicated from the scoreboard rendering code so not many comments here xD
 		Minecraft mc = Minecraft.getMinecraft();
-		if (mc != null && mc.world != null) {
-			Scoreboard scoreboard = mc.world.getScoreboard();
+		if (mc != null && mc.theWorld != null) {
+			Scoreboard scoreboard = mc.theWorld.getScoreboard();
 			ScoreObjective objective = null;
-			ScorePlayerTeam scoreplayerteam = scoreboard.getPlayersTeam(mc.player.getName());
+			ScorePlayerTeam scoreplayerteam = scoreboard.getPlayersTeam(mc.thePlayer.getName());
 			if (scoreplayerteam != null) {
-				int slot = scoreplayerteam.getColor().getColorIndex();
+				int slot = scoreplayerteam.getChatFormat().getColorIndex();
 				if (slot >= 0) { objective = scoreboard.getObjectiveInDisplaySlot(3 + slot); }
 			}
 			ScoreObjective scoreobjective1 = objective != null ? objective : scoreboard.getObjectiveInDisplaySlot(1);

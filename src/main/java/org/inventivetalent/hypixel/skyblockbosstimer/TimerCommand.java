@@ -4,8 +4,7 @@ import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.ChatComponentText;
 
 public class TimerCommand extends CommandBase implements ICommand {
 
@@ -16,20 +15,20 @@ public class TimerCommand extends CommandBase implements ICommand {
 	}
 
 	@Override
-	public String getName() {
+	public String getCommandName() {
 		return "bosstimer";
 	}
 
 	@Override
-	public String getUsage(ICommandSender sender) {
+	public String getCommandUsage(ICommandSender iCommandSender) {
 		return "/BossTimer";
 	}
 
 	@Override
-	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
+	public void processCommand(ICommandSender sender, String[] args) throws CommandException {
 		if (args.length == 0) {
-			sender.sendMessage(new TextComponentString("§cThe Magma Boss should spawn " + mod.spawnEstimateRelative));
-			sender.sendMessage(new TextComponentString("§bhttps://hypixel.inventivetalent.org/skyblock-magma-timer/"));
+			sender.addChatMessage(new ChatComponentText("§cThe Magma Boss should spawn " + mod.spawnEstimateRelative));
+			sender.addChatMessage(new ChatComponentText("§bhttps://hypixel.inventivetalent.org/skyblock-magma-timer/"));
 		}
 	}
 

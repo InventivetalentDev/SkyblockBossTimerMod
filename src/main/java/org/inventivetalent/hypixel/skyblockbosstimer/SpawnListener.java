@@ -33,11 +33,11 @@ public class SpawnListener {
 
 	@SubscribeEvent
 	public void on(EntityJoinWorldEvent event) {
-		Entity entity = event.getEntity();
-		if (entity == Minecraft.getMinecraft().player) {
+		Entity entity = event.entity;
+		if (entity == Minecraft.getMinecraft().thePlayer) {
 			BossTimerMod.logger.info("Joined World!");
 
-			username=Minecraft.getMinecraft().player.getName();
+			username=Minecraft.getMinecraft().thePlayer.getName();
 		} else if (entity instanceof EntityLiving) {
 			if(mod.util.onSkyblock) {
 //				System.out.println(entity.getName());
@@ -73,7 +73,7 @@ public class SpawnListener {
 
 	@SubscribeEvent
 	public void on(ClientChatReceivedEvent event) {
-		String message = event.getMessage().getUnformattedText();
+		String message = event.message.getUnformattedText();
 		if(mod.util.onSkyblock&&mod.util.location== Util.Location.BLAZING_FORTRESS) {
 			if (message.contains("The Magma Boss is spawning")) {
 				magmaBossSpawned = true;
