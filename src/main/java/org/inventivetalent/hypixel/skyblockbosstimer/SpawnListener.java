@@ -51,7 +51,7 @@ public class SpawnListener {
 					} else if (entity instanceof EntityMagmaCube) {
 						EntityMagmaCube magmaCube = (EntityMagmaCube) entity;
 						int size = magmaCube.getSlimeSize();
-						System.out.println("Cube Size: " + size);
+//						System.out.println("Cube Size: " + size);
 
 						// This doesn't seem to be working very well :/
 						if (size >= 10) {// should be the boss
