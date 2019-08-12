@@ -1,0 +1,16 @@
+[
+{
+  "modid": "skyblockbosstimer",
+  "name": "Hypixel Skyblock Boss Timer",
+  "description": "Hypixel Skyblock Boss Timer",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "https://hypixel.inventivetalent.org/skyblock-magma-timer/",
+  "updateUrl": "",
+  "authorList": ["inventivetalent"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
