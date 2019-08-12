@@ -12,7 +12,7 @@ import java.util.Date;
 public class RenderListener {
 
 	private BossTimerMod mod;
-	private DateFormat dateFormat = new SimpleDateFormat("HH:mm");
+	private DateFormat   dateFormat = new SimpleDateFormat("HH:mm");
 
 	public RenderListener(BossTimerMod mod) {
 		this.mod = mod;
@@ -42,7 +42,7 @@ public class RenderListener {
 		}
 
 		if (mod.util.onSkyblock) {
-			if (mod.util.location == Util.Location.BLAZING_FORTRESS || Minecraft.getMinecraft().gameSettings.showDebugInfo || (mod.spawnEstimate - System.currentTimeMillis() < 1.2e+6/*20min*/)) {
+			if (mod.spawnEstimate != 0 && (mod.util.location == Util.Location.BLAZING_FORTRESS || Minecraft.getMinecraft().gameSettings.showDebugInfo || (mod.spawnEstimate - System.currentTimeMillis() < 1.2e+6/*20min*/))) {
 				if (Minecraft.getMinecraft().gameSettings.showDebugInfo) {
 					event.getRight().add("");
 				}
