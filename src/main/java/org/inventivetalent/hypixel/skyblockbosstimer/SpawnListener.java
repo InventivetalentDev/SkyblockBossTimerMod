@@ -36,7 +36,7 @@ public class SpawnListener {
 			BossTimerMod.logger.info("Joined World!");
 		} else if (entity instanceof EntityLiving) {
 			if(mod.util.onSkyblock) {
-				System.out.println(entity.getName());
+//				System.out.println(entity.getName());
 				if (mod.util.location == Util.Location.BLAZING_FORTRESS) {
 					if (entity instanceof EntityBlaze) {
 						blazeSpawnCounter++;
