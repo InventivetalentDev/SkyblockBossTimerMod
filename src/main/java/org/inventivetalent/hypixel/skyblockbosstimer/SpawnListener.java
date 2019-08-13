@@ -5,8 +5,10 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.monster.EntityMagmaCube;
+import net.minecraft.util.SoundEvent;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.PlaySoundAtEntityEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
@@ -85,6 +87,16 @@ public class SpawnListener {
 	}
 
 	@SubscribeEvent
+	public void on(PlaySoundAtEntityEvent event) {
+		System.out.println("PlaySoundAtEntityEvent");
+		SoundEvent sound = event.getSound();
+		if (sound != null) {
+			System.out.println(sound);
+			System.out.println(sound.getSoundName());
+		}
+	}
+
+	@SubscribeEvent
 	public void on(TickEvent.ClientTickEvent event) {
 		if (event.phase == TickEvent.Phase.START) {
 			if (tick % 5 == 0) {
@@ -134,5 +146,6 @@ public class SpawnListener {
 
 		}
 	}
+
 
 }
