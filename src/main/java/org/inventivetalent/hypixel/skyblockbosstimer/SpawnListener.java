@@ -88,11 +88,13 @@ public class SpawnListener {
 
 	@SubscribeEvent
 	public void on(PlaySoundAtEntityEvent event) {
-		System.out.println("PlaySoundAtEntityEvent");
-		SoundEvent sound = event.getSound();
-		if (sound != null) {
-			System.out.println(sound);
-			System.out.println(sound.getSoundName());
+		if (mod.util.onSkyblock && mod.util.location == Util.Location.BLAZING_FORTRESS) {
+			System.out.println("PlaySoundAtEntityEvent");
+			SoundEvent sound = event.getSound();
+			if (sound != null) {
+				System.out.println(sound);
+				System.out.println(sound.getSoundName());
+			}
 		}
 	}
 
