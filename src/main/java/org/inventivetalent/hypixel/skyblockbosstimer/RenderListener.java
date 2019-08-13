@@ -29,13 +29,13 @@ public class RenderListener {
 		if ((Minecraft.getMinecraft().ingameGUI instanceof GuiIngameForge) && mod.util.onSkyblock) {
 			if (event.getType() == RenderGameOverlayEvent.ElementType.EXPERIENCE) {
 				if (mod.spawnEstimate != 0 && (mod.util.location == Util.Location.BLAZING_FORTRESS || Minecraft.getMinecraft().gameSettings.showDebugInfo || (mod.spawnEstimate - System.currentTimeMillis() < 1.2e+6/*20min*/))) {
-					renderThings(event.getResolution());
+					renderInfo(event.getResolution());
 				}
 			}
 		}
 	}
 
-	public void renderThings(ScaledResolution resolution) {
+	public void renderInfo(ScaledResolution resolution) {
 		Minecraft minecraft = Minecraft.getMinecraft();
 		int width = resolution.getScaledWidth();
 		int height = resolution.getScaledHeight();
