@@ -25,6 +25,7 @@ public class SpawnListener {
 	public boolean blazeWaveSpawned = false;
 	public boolean magmaWaveSpawned = false;
 	public boolean magmaBossSpawned = false;
+	public boolean magmaBossDied    = false;
 
 	public SpawnListener(BossTimerMod mod) {
 		this.mod = mod;
@@ -51,7 +52,7 @@ public class SpawnListener {
 					} else if (entity instanceof EntityMagmaCube) {
 						EntityMagmaCube magmaCube = (EntityMagmaCube) entity;
 						int size = magmaCube.getSlimeSize();
-//						System.out.println("Cube Size: " + size);
+						//						System.out.println("Cube Size: " + size);
 
 						// This doesn't seem to be working very well :/
 						if (size >= 10) {// should be the boss
@@ -76,6 +77,9 @@ public class SpawnListener {
 		if (mod.util.onSkyblock && mod.util.location == Util.Location.BLAZING_FORTRESS) {
 			if (message.contains("The Magma Boss is spawning")) {
 				magmaBossSpawned = true;
+			}
+			if (message.contains("MAGMA CUBE BOSS DOWN")) {
+				magmaBossDied = true;
 			}
 		}
 	}
@@ -105,6 +109,10 @@ public class SpawnListener {
 				if (magmaBossSpawned) {
 					magmaBossSpawned = false;
 					mod.util.postEventToServer("spawn", username);
+				}
+				if (magmaBossDied) {
+					magmaBossDied = false;
+					mod.util.postEventToServer("death", username);
 				}
 
 				tick = 1;
