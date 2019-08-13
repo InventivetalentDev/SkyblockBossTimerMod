@@ -87,7 +87,7 @@ public class SpawnListener {
 	@SubscribeEvent
 	public void on(TickEvent.ClientTickEvent event) {
 		if (event.phase == TickEvent.Phase.START) {
-			if (tick == 10) {
+			if (tick % 5 == 0) {
 				if (blazeSpawnCounter > 0) {
 					blazeSpawnCounter--;
 				}
