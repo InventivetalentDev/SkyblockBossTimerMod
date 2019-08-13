@@ -74,7 +74,7 @@ public class SpawnListener {
 
 	@SubscribeEvent
 	public void on(ClientChatReceivedEvent event) {
-		String message = event.message.getUnformattedText();
+		String message = event.getMessage().getUnformattedText();
 		if (mod.util.onSkyblock && mod.util.location == Util.Location.BLAZING_FORTRESS) {
 			if (message.contains("The Magma Boss is spawning")) {
 				magmaBossSpawned = true;
@@ -87,10 +87,13 @@ public class SpawnListener {
 
 	@SubscribeEvent
 	public void on(PlaySoundAtEntityEvent event) {
-		System.out.println("PlaySoundAtEntityEvent");
-		String sound = event.name;
-		if (sound != null) {
-			System.out.println(sound);
+		if (mod.util.onSkyblock && mod.util.location == Util.Location.BLAZING_FORTRESS) {
+			System.out.println("PlaySoundAtEntityEvent");
+			SoundEvent sound = event.getSound();
+			if (sound != null) {
+				System.out.println(sound);
+				System.out.println(sound.getSoundName());
+			}
 		}
 	}
 
