@@ -5,10 +5,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.monster.EntityMagmaCube;
-import net.minecraft.util.SoundEvent;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
+import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.entity.PlaySoundAtEntityEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
@@ -26,6 +25,7 @@ public class SpawnListener {
 
 	public boolean blazeWaveSpawned = false;
 	public boolean magmaWaveSpawned = false;
+	public boolean musicPlaying     = false;
 	public boolean magmaBossSpawned = false;
 	public boolean magmaBossDied    = false;
 
@@ -87,13 +87,11 @@ public class SpawnListener {
 	}
 
 	@SubscribeEvent
-	public void on(PlaySoundAtEntityEvent event) {
+	public void on(PlaySoundEvent event) {
 		if (mod.util.onSkyblock && mod.util.location == Util.Location.BLAZING_FORTRESS) {
-			System.out.println("PlaySoundAtEntityEvent");
-			SoundEvent sound = event.getSound();
-			if (sound != null) {
-				System.out.println(sound);
-				System.out.println(sound.getSoundName());
+			String name = event.getName();
+			if (name.startsWith("record")) {
+				musicPlaying = true;
 			}
 		}
 	}
@@ -119,6 +117,10 @@ public class SpawnListener {
 				if (magmaWaveSpawned) {
 					magmaWaveSpawned = false;
 					mod.util.postEventToServer("magma", username);
+				}
+				if (musicPlaying) {
+					musicPlaying = false;
+					mod.util.postEventToServer("music", username);
 				}
 				if (magmaBossSpawned) {
 					magmaBossSpawned = false;
@@ -148,6 +150,5 @@ public class SpawnListener {
 
 		}
 	}
-
 
 }
