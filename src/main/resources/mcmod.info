@@ -9,7 +9,7 @@
   "updateUrl": "",
   "authorList": ["inventivetalent"],
   "credits": "",
-  "logoFile": "",
+  "logoFile": "assets/skyblockbosstimer/textures/magma_cube.png",
   "screenshots": [],
   "dependencies": []
 }
