@@ -5,7 +5,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.monster.EntityMagmaCube;
-import net.minecraft.util.SoundEvent;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.PlaySoundAtEntityEvent;
@@ -89,10 +88,9 @@ public class SpawnListener {
 	@SubscribeEvent
 	public void on(PlaySoundAtEntityEvent event) {
 		System.out.println("PlaySoundAtEntityEvent");
-		SoundEvent sound = event.getSound();
+		String sound = event.name;
 		if (sound != null) {
 			System.out.println(sound);
-			System.out.println(sound.getSoundName());
 		}
 	}
 

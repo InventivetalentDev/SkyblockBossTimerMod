@@ -27,9 +27,9 @@ public class RenderListener {
 	@SubscribeEvent()
 	public void onRenderRegular(RenderGameOverlayEvent.Post event) {
 		if ((Minecraft.getMinecraft().ingameGUI instanceof GuiIngameForge) && mod.util.onSkyblock) {
-			if (event.getType() == RenderGameOverlayEvent.ElementType.EXPERIENCE) {
+			if (event.type == RenderGameOverlayEvent.ElementType.EXPERIENCE) {
 				if (mod.spawnEstimate != 0 && (mod.util.location == Util.Location.BLAZING_FORTRESS || (mod.spawnEstimate - System.currentTimeMillis() < 1.2e+6/*20min*/))) {
-					renderInfo(event.getResolution());
+					renderInfo(event.resolution);
 				}
 			}
 		}
@@ -111,9 +111,9 @@ public class RenderListener {
 					event.left.add("Magma Spawn Counter: " + mod.spawnListener.magmaSpawnCounter);
 				}
 
-				event.getRight().add("");
-				event.getRight().add("Magma Boss Spawn Estimate: " + mod.spawnEstimateRelative);
-				event.getRight().add("(" + dateFormat.format(new Date(mod.spawnEstimate)) + ")");
+				event.right.add("");
+				event.right.add("Magma Boss Spawn Estimate: " + mod.spawnEstimateRelative);
+				event.right.add("(" + dateFormat.format(new Date(mod.spawnEstimate)) + ")");
 			}
 		}
 	}
