@@ -28,7 +28,7 @@ public class RenderListener {
 	public void onRenderRegular(RenderGameOverlayEvent.Post event) {
 		if ((Minecraft.getMinecraft().ingameGUI instanceof GuiIngameForge) && mod.util.onSkyblock) {
 			if (event.getType() == RenderGameOverlayEvent.ElementType.EXPERIENCE) {
-				if (mod.spawnEstimate != 0 && (mod.util.location == Util.Location.BLAZING_FORTRESS || Minecraft.getMinecraft().gameSettings.showDebugInfo || (mod.spawnEstimate - System.currentTimeMillis() < 1.2e+6/*20min*/))) {
+				if (mod.spawnEstimate != 0 && (mod.util.location == Util.Location.BLAZING_FORTRESS || (mod.spawnEstimate - System.currentTimeMillis() < 1.2e+6/*20min*/))) {
 					renderInfo(event.getResolution());
 				}
 			}
