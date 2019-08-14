@@ -2,6 +2,7 @@
 Minecraft Forge Mod to track the spawn times of the Hypixel Skyblock Magma Boss  
 
 
+## Features
 This acts as a client for the [Magma Boss Tracker website](https://hypixel.inventivetalent.org/skyblock-magma-timer/) and automatically tracks events, spawn & death of the boss.  
 It also adds a simple time info UI.  
 ![](https://yeleha.co/2TwDnEX)   
