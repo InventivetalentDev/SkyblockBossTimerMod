@@ -158,9 +158,9 @@ public class Util {
 					}
 					for (Location loopLocation : Location.values()) {
 						if (loopLocation == Location.UNKNOWN) { continue; }
-						if (locationString.endsWith(loopLocation.getScoreboardName())) {//s1.equals(" \u00A77\u23E3 \u00A7aYour Isla\uD83C\uDFC0\u00A7and")) {
+						if (locationString.contains(loopLocation.getScoreboardName())) {//s1.equals(" \u00A77\u23E3 \u00A7aYour Isla\uD83C\uDFC0\u00A7and")) {
 							location = loopLocation;
-							continue;
+							break;
 						}
 					}
 				}
@@ -170,7 +170,6 @@ public class Util {
 		} else {
 			onSkyblock = false;
 		}
-		location = Location.UNKNOWN;
 	}
 
 	private final Pattern STRIP_COLOR_PATTERN           = Pattern.compile("(?i)" + '\u00A7' + "[0-9A-FK-OR]");
