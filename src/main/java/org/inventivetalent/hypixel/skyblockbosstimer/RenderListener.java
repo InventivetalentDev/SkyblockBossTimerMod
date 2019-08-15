@@ -104,6 +104,7 @@ public class RenderListener {
 		if (Minecraft.getMinecraft().gameSettings.showDebugInfo) {
 			event.getLeft().add("");
 			event.getLeft().add("On Skyblock: " + mod.util.onSkyblock);
+			event.getLeft().add("Skyblock Server: " + mod.util.serverId);
 			if (mod.util.onSkyblock) {
 				event.getLeft().add("Skyblock Location: " + mod.util.location.name());
 				if (mod.util.location == Util.Location.BLAZING_FORTRESS) {
