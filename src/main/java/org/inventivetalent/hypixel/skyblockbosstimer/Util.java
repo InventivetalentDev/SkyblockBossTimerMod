@@ -18,6 +18,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Collection;
 import java.util.List;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -29,7 +30,7 @@ public class Util {
 
 	public boolean  onSkyblock = false;
 	public Location location   = Location.UNKNOWN;
-	public String serverId = "";
+	public String   serverId   = "";
 
 	public Util(BossTimerMod mod) {
 		this.mod = mod;
@@ -104,7 +105,6 @@ public class Util {
 		}).start();
 	}
 
-
 	private void doPost(HttpURLConnection connection, String postString) throws IOException {
 		connection.setDoOutput(true);
 		try (DataOutputStream out = new DataOutputStream(connection.getOutputStream())) {
@@ -120,7 +120,6 @@ public class Util {
 			}
 		}
 	}
-
 
 	///// Stuff based on / copied from https://github.com/biscuut/SkyblockAddons/blob/master/src/main/java/codes/biscuit/skyblockaddons/utils/Utils.java
 
@@ -150,7 +149,11 @@ public class Util {
 					ScorePlayerTeam scoreplayerteam1 = scoreboard.getPlayersTeam(score1.getPlayerName());
 					String locationString = getStringOnly(stripColor(ScorePlayerTeam.formatPlayerName(scoreplayerteam1, score1.getPlayerName())));
 					if (locationString.contains("mini")) {
-
+						Matcher matcher = SERVER_REGEX.matcher(locationString);
+						if (matcher.matches()) {
+							serverId = matcher.group(2);
+							continue;// skip to next line
+						}
 					}
 					for (Location loopLocation : Location.values()) {
 						if (loopLocation == Location.UNKNOWN) { continue; }
