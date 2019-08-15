@@ -76,7 +76,7 @@ public class Util {
 				connection.setRequestMethod("POST");
 				connection.setRequestProperty("User-Agent", "BossTimerMod/" + BossTimerMod.VERSION);
 
-				String postString = "minecraftUser=" + username + "&lastFocused=" + System.currentTimeMillis() / 1000;
+				String postString = "minecraftUser=" + username + "&lastFocused=" + System.currentTimeMillis() / 1000 + "&serverId=" + mod.util.serverId;
 				//TODO: might wanna keep track on when the player *actually* was active ingame
 
 				doPost(connection, postString);
@@ -96,7 +96,7 @@ public class Util {
 				connection.setRequestMethod("POST");
 				connection.setRequestProperty("User-Agent", "BossTimerMod/" + BossTimerMod.VERSION);
 
-				String postString = "type=" + event + "&isModRequest=true&minecraftUser=" + username;
+				String postString = "type=" + event + "&isModRequest=true&minecraftUser=" + username + "&serverId=" + mod.util.serverId;
 
 				doPost(connection, postString);
 			} catch (IOException e) {
