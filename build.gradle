@@ -79,3 +79,8 @@ processResources {
         exclude 'mcmod.info'
     }
 }
+
+task cleanBuildDir(type: Delete) {
+    group = "build"
+    delete "build"
+}
