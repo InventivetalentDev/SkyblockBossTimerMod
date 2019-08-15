@@ -22,7 +22,7 @@ public class ConfigWrapper {
 	}
 
 	public static void reloadConfig() {
-		Configuration.infoPosition = Configuration.Position.valueOf(config.getString("general", "infoPosition", Configuration.infoPosition.name(), "Position of the UI", positionValueStrings));
+		Configuration.infoPosition = Configuration.Position.valueOf(config.get("general", "infoPosition", Configuration.infoPosition.name()).getString());
 		Configuration.paddingLeft = config.get("general", "paddingLeft", Configuration.paddingLeft).getInt();
 		Configuration.paddingRight = config.get("general", "paddingRight", Configuration.paddingRight).getInt();
 		Configuration.paddingBottom = config.get("general", "paddingBottom", Configuration.paddingBottom).getInt();
