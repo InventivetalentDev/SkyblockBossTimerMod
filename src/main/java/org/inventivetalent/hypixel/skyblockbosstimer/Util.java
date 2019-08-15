@@ -23,10 +23,13 @@ import java.util.stream.Collectors;
 
 public class Util {
 
+	public static final Pattern SERVER_REGEX = Pattern.compile("([0-9]{2}/[0-9]{2}/[0-9]{2}) (mini[0-9]{1,3}[A-Za-z])");
+
 	private BossTimerMod mod;
 
 	public boolean  onSkyblock = false;
 	public Location location   = Location.UNKNOWN;
+	public String serverId = "";
 
 	public Util(BossTimerMod mod) {
 		this.mod = mod;
@@ -146,6 +149,9 @@ public class Util {
 				for (Score score1 : collection) {
 					ScorePlayerTeam scoreplayerteam1 = scoreboard.getPlayersTeam(score1.getPlayerName());
 					String locationString = getStringOnly(stripColor(ScorePlayerTeam.formatPlayerName(scoreplayerteam1, score1.getPlayerName())));
+					if (locationString.contains("mini")) {
+
+					}
 					for (Location loopLocation : Location.values()) {
 						if (loopLocation == Location.UNKNOWN) { continue; }
 						if (locationString.endsWith(loopLocation.getScoreboardName())) {//s1.equals(" \u00A77\u23E3 \u00A7aYour Isla\uD83C\uDFC0\u00A7and")) {
