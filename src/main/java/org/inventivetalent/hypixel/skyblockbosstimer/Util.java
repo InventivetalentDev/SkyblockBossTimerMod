@@ -173,23 +173,12 @@ public class Util {
 		location = Location.UNKNOWN;
 	}
 
-	private String getStringOnly(String text) {
-		return Pattern.compile("[^a-z A-Z]").matcher(text).replaceAll("");
-	}
+	private final Pattern STRIP_COLOR_PATTERN           = Pattern.compile("(?i)" + '\u00A7' + "[0-9A-FK-OR]");
+	private final Pattern STRING_ONLY_EXTENSIVE_PATTERN = Pattern.compile("[^a-z A-Z:0-9/]");
 
 	private String getStringOnlyExtensive(String text) {
-		return Pattern.compile("[^a-z A-Z:0-9/]").matcher(text).replaceAll("");
+		return STRING_ONLY_EXTENSIVE_PATTERN.matcher(text).replaceAll("");
 	}
-
-	public String getNumbersOnly(String text) {
-		return Pattern.compile("[^0-9 /]").matcher(text).replaceAll("");
-	}
-
-	String removeDuplicateSpaces(String text) {
-		return text.replaceAll("\\s+", " ");
-	}
-
-	private final Pattern STRIP_COLOR_PATTERN = Pattern.compile("(?i)" + '\u00A7' + "[0-9A-FK-OR]");
 
 	public String stripColor(final String input) {
 		return STRIP_COLOR_PATTERN.matcher(input).replaceAll("");
