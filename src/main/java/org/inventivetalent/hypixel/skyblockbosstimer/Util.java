@@ -147,7 +147,8 @@ public class Util {
 				}
 				for (Score score1 : collection) {
 					ScorePlayerTeam scoreplayerteam1 = scoreboard.getPlayersTeam(score1.getPlayerName());
-					String locationString = getStringOnly(stripColor(ScorePlayerTeam.formatPlayerName(scoreplayerteam1, score1.getPlayerName())));
+					String stripped = stripColor(ScorePlayerTeam.formatPlayerName(scoreplayerteam1, score1.getPlayerName()));
+					String locationString = getStringOnlyExtensive(stripped);
 					if (locationString.contains("mini")) {
 						Matcher matcher = SERVER_REGEX.matcher(locationString);
 						if (matcher.matches()) {
@@ -159,7 +160,7 @@ public class Util {
 						if (loopLocation == Location.UNKNOWN) { continue; }
 						if (locationString.endsWith(loopLocation.getScoreboardName())) {//s1.equals(" \u00A77\u23E3 \u00A7aYour Isla\uD83C\uDFC0\u00A7and")) {
 							location = loopLocation;
-							return;
+							continue;
 						}
 					}
 				}
@@ -174,6 +175,10 @@ public class Util {
 
 	private String getStringOnly(String text) {
 		return Pattern.compile("[^a-z A-Z]").matcher(text).replaceAll("");
+	}
+
+	private String getStringOnlyExtensive(String text) {
+		return Pattern.compile("[^a-z A-Z:0-9/]").matcher(text).replaceAll("");
 	}
 
 	public String getNumbersOnly(String text) {
