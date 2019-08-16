@@ -5,6 +5,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.monster.EntityMagmaCube;
+import net.minecraft.entity.monster.EntitySlime;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -17,11 +18,13 @@ public class SpawnListener {
 
 	private BossTimerMod mod;
 
-	private int    tick              = 1;
-	private int    seconds           = 0;
-	public  int    blazeSpawnCounter = 0;
-	public  int    magmaSpawnCounter = 0;
-	public  String username          = "";
+	private int     tick              = 1;
+	private int     seconds           = 0;
+	public  int     blazeSpawnCounter = 0;
+	public  int     magmaSpawnCounter = 0;
+	public  String  username          = "";
+	public  boolean gotSpawnMessage   = false;
+	public  boolean gotDeathMessage   = false;
 
 	public boolean blazeWaveSpawned = false;
 	public boolean magmaWaveSpawned = false;
@@ -40,9 +43,11 @@ public class SpawnListener {
 			BossTimerMod.logger.info("Joined World!");
 
 			username = Minecraft.getMinecraft().player.getName();
+
+			gotSpawnMessage = false;
+			gotDeathMessage = false;
 		} else if (entity instanceof EntityLiving) {
 			if (mod.util.onSkyblock) {
-				//				System.out.println(entity.getName());
 				if (mod.util.location == Util.Location.BLAZING_FORTRESS) {
 					if (entity instanceof EntityBlaze) {
 						blazeSpawnCounter++;
@@ -52,20 +57,11 @@ public class SpawnListener {
 							blazeWaveSpawned = true;
 						}
 					} else if (entity instanceof EntityMagmaCube) {
-						EntityMagmaCube magmaCube = (EntityMagmaCube) entity;
-						int size = magmaCube.getSlimeSize();
-						//						System.out.println("Cube Size: " + size);
+						magmaSpawnCounter++;
 
-						// This doesn't seem to be working very well :/
-						if (size >= 10) {// should be the boss
-							magmaBossSpawned = true;
-						} else {
-							magmaSpawnCounter++;
-
-							if (magmaSpawnCounter > WAVE_THRESHOLD) {
-								System.out.println("magma counter: " + magmaSpawnCounter);
-								magmaWaveSpawned = true;
-							}
+						if (magmaSpawnCounter > WAVE_THRESHOLD) {
+							System.out.println("magma counter: " + magmaSpawnCounter);
+							magmaWaveSpawned = true;
 						}
 					}
 				}
@@ -78,10 +74,10 @@ public class SpawnListener {
 		String message = event.getMessage().getUnformattedText();
 		if (mod.util.onSkyblock && mod.util.location == Util.Location.BLAZING_FORTRESS) {
 			if (message.contains("The Magma Boss is spawning")) {
-				magmaBossSpawned = true;
+				gotSpawnMessage = true;
 			}
 			if (message.contains("MAGMA CUBE BOSS DOWN")) {
-				magmaBossDied = true;
+				gotDeathMessage = true;
 			}
 		}
 	}
@@ -109,6 +105,23 @@ public class SpawnListener {
 			}
 			if (tick >= 20) {
 				mod.util.checkGameAndLocation();
+
+				if (gotSpawnMessage) {
+					if (checkForMagmaBoss()) {
+						gotSpawnMessage = false;
+						magmaBossSpawned = true;
+					} else {
+						BossTimerMod.logger.warn("Received a spawn message but didn't find a boss!");
+					}
+				}
+				if (gotDeathMessage) {
+					if (!checkForMagmaBoss()) {
+						gotDeathMessage = false;
+						magmaBossDied = true;
+					} else {
+						BossTimerMod.logger.warn("Received a death message but boss still exists!");
+					}
+				}
 
 				if (blazeWaveSpawned) {
 					blazeWaveSpawned = false;
@@ -159,6 +172,22 @@ public class SpawnListener {
 			}
 
 		}
+	}
+
+	boolean checkForMagmaBoss() {
+		Minecraft minecraft = Minecraft.getMinecraft();
+		for (Entity entity : minecraft.world.loadedEntityList) { // Loop through all the entities.
+			if (entity instanceof EntityMagmaCube) {
+				EntitySlime magma = (EntitySlime) entity;
+				int size = magma.getSlimeSize();
+				double health = magma.getHealth();
+				if (size > 10 && health > 0) { // Find a big magma boss
+					BossTimerMod.logger.info("Found a big Magma Cube!");
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 }
