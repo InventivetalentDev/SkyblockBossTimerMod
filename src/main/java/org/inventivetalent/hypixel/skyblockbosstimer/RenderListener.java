@@ -111,6 +111,7 @@ public class RenderListener {
 					event.getLeft().add("Blaze Spawn Counter: " + mod.spawnListener.blazeSpawnCounter);
 					event.getLeft().add("Magma Spawn Counter: " + mod.spawnListener.magmaSpawnCounter);
 				}
+				event.getLeft().add("Last Event: " + mod.lastEvent);
 
 				event.getRight().add("");
 				event.getRight().add("Magma Boss Spawn Estimate: " + mod.spawnEstimateRelative);
