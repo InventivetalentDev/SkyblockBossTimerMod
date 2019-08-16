@@ -113,26 +113,31 @@ public class SpawnListener {
 				if (blazeWaveSpawned) {
 					blazeWaveSpawned = false;
 					mod.lastEvent = "blaze";
+					mod.lastEventTime = System.currentTimeMillis();
 					mod.util.postEventToServer("blaze", username);
 				}
 				if (magmaWaveSpawned) {
 					magmaWaveSpawned = false;
 					mod.lastEvent = "magma";
+					mod.lastEventTime = System.currentTimeMillis();
 					mod.util.postEventToServer("magma", username);
 				}
 				if (musicPlaying) {
 					musicPlaying = false;
 					mod.lastEvent = "music";
+					mod.lastEventTime = System.currentTimeMillis();
 					mod.util.postEventToServer("music", username);
 				}
 				if (magmaBossSpawned) {
 					magmaBossSpawned = false;
 					mod.lastEvent = "spawn";
+					mod.lastEventTime = System.currentTimeMillis();
 					mod.util.postEventToServer("spawn", username);
 				}
 				if (magmaBossDied) {
 					magmaBossDied = false;
 					mod.lastEvent = "death";
+					mod.lastEventTime = System.currentTimeMillis();
 					mod.util.postEventToServer("death", username);
 				}
 

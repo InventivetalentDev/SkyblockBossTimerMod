@@ -25,7 +25,9 @@ public class BossTimerMod {
 
 	public long   spawnEstimate         = 0;
 	public String spawnEstimateRelative = "";
-	public String lastEvent             = "none";
+
+	public String lastEvent     = "none";
+	public long   lastEventTime = 0;
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
