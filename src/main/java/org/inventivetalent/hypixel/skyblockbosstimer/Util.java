@@ -146,7 +146,6 @@ public class Util {
 					collection = list;
 				}
 
-				serverId = "";
 				location = Location.UNKNOWN;
 
 				for (Score score1 : collection) {
