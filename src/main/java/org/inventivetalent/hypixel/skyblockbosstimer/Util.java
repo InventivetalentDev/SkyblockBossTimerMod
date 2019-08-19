@@ -145,6 +145,10 @@ public class Util {
 				} else {
 					collection = list;
 				}
+
+				serverId = "";
+				location = Location.UNKNOWN;
+
 				for (Score score1 : collection) {
 					ScorePlayerTeam scoreplayerteam1 = scoreboard.getPlayersTeam(score1.getPlayerName());
 					String stripped = stripColor(ScorePlayerTeam.formatPlayerName(scoreplayerteam1, score1.getPlayerName()));
@@ -166,9 +170,11 @@ public class Util {
 				}
 			} else {
 				onSkyblock = false;
+				location = Location.UNKNOWN;
 			}
 		} else {
 			onSkyblock = false;
+			location = Location.UNKNOWN;
 		}
 	}
 
