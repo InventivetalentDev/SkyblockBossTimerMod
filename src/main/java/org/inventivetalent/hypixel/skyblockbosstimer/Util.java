@@ -41,7 +41,7 @@ public class Util {
 			BossTimerMod.logger.info("GETting spawn estimate from server");
 
 			try {
-				URL url = new URL("https://hypixel.inventivetalent.org/skyblock-magma-timer/get_estimated_spawn.php");
+				URL url = new URL("https://hypixel-api.inventivetalent.org/api/skyblock/bosstimer/magma/estimatedSpawn");
 				HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 				connection.setRequestMethod("GET");
 				connection.setRequestProperty("User-Agent", "BossTimerMod/" + BossTimerMod.VERSION);
@@ -71,7 +71,7 @@ public class Util {
 			BossTimerMod.logger.info("pinging server");
 
 			try {
-				URL url = new URL("https://hypixel.inventivetalent.org/skyblock-magma-timer/ping.php");
+				URL url = new URL("https://hypixel-api.inventivetalent.org/api/skyblock/bosstimer/magma/ping");
 				HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 				connection.setRequestMethod("POST");
 				connection.setRequestProperty("User-Agent", "BossTimerMod/" + BossTimerMod.VERSION);
@@ -91,7 +91,7 @@ public class Util {
 			BossTimerMod.logger.info("POSTing " + event + " event to server");
 
 			try {
-				URL url = new URL("https://hypixel.inventivetalent.org/skyblock-magma-timer/add_event.php");
+				URL url = new URL("https://hypixel-api.inventivetalent.org/api/skyblock/bosstimer/magma/addEvent");
 				HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 				connection.setRequestMethod("POST");
 				connection.setRequestProperty("User-Agent", "BossTimerMod/" + BossTimerMod.VERSION);
