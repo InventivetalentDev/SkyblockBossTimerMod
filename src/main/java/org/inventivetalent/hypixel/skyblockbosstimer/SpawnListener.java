@@ -52,13 +52,15 @@ public class SpawnListener {
 			gotSpawnMessage = false;
 			gotDeathMessage = false;
 
-			Minecraft.getMinecraft().ingameGUI.addChatMessage(ChatType.CHAT,
-					new TextComponentString(" "));
-			Minecraft.getMinecraft().ingameGUI.addChatMessage(ChatType.CHAT,
-					new TextComponentString("There's an update available for the SkyblockBossTimerMod!").setStyle(new Style().setColor(TextFormatting.YELLOW)));
-			Minecraft.getMinecraft().ingameGUI.addChatMessage(ChatType.CHAT,
-					new TextComponentString("Get it here").setStyle(new Style().setColor(TextFormatting.YELLOW).setUnderlined(true)
-							.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://hypixel.inventivetalent.org/skyblock-magma-timer/mod"))));
+			if (mod.updateAvailable) {
+				Minecraft.getMinecraft().ingameGUI.addChatMessage(ChatType.CHAT,
+						new TextComponentString(" "));
+				Minecraft.getMinecraft().ingameGUI.addChatMessage(ChatType.CHAT,
+						new TextComponentString("There's an update available for the SkyblockBossTimerMod!").setStyle(new Style().setColor(TextFormatting.YELLOW)));
+				Minecraft.getMinecraft().ingameGUI.addChatMessage(ChatType.CHAT,
+						new TextComponentString("Get it here").setStyle(new Style().setColor(TextFormatting.YELLOW).setUnderlined(true)
+								.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://hypixel.inventivetalent.org/skyblock-magma-timer/mod"))));
+			}
 		} else if (entity instanceof EntityLiving) {
 			if (mod.util.onSkyblock) {
 				if (mod.util.location == Util.Location.BLAZING_FORTRESS) {
