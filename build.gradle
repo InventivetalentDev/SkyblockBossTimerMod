@@ -31,6 +31,7 @@ minecraft {
 
     replace "@VERSION@", project.version
     replace "@MCVERSION@", mc_version
+    replace "@MODVERSION@", mod_version
     replaceIn "BossTimerMod.java"
 
     mappings = project.mappings_version

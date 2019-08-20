@@ -19,10 +19,11 @@ import java.io.File;
 	 guiFactory = "org.inventivetalent.hypixel.skyblockbosstimer.GuiFactory")
 public class BossTimerMod {
 
-	public static final String MODID     = "skyblockbosstimer";
-	public static final String NAME      = "Hypixel Skyblock Boss Timer";
-	public static final String VERSION   = "@VERSION@";
-	public static final String MCVERSION = "@MCVERSION@";
+	public static final String MODID      = "skyblockbosstimer";
+	public static final String NAME       = "Hypixel Skyblock Boss Timer";
+	public static final String VERSION    = "@VERSION@";
+	public static final String MODVERSION = "@MODVERSION@";
+	public static final String MCVERSION  = "@MCVERSION@";
 
 	public static Logger logger;
 
@@ -31,7 +32,7 @@ public class BossTimerMod {
 	public Util           util           = new Util(this);
 
 	public long   spawnEstimate
-			= 0;
+										= 0;
 	public String spawnEstimateRelative = "";
 
 	public String lastEvent     = "none";
@@ -55,7 +56,6 @@ public class BossTimerMod {
 		MinecraftForge.EVENT_BUS.register(renderListener);
 
 		MinecraftForge.EVENT_BUS.register(this);
-
 
 		ConfigWrapper.init(new File(Loader.instance().getConfigDir(), NAME + ".cfg"));
 	}
