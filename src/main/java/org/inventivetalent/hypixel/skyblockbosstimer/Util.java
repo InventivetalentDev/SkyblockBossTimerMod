@@ -127,7 +127,7 @@ public class Util {
 					}
 				}
 
-				if (!BossTimerMod.VERSION.equals(updateVersion)) {
+				if (!BossTimerMod.MODVERSION.equals(updateVersion)) {
 					BossTimerMod.logger.info("Update Available: " + updateVersion + " (currently " + BossTimerMod.VERSION + ")");
 					mod.updateAvailable = true;
 				}
