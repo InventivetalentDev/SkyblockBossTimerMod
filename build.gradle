@@ -30,6 +30,7 @@ minecraft {
     runDir = "run"
 
     replace "@VERSION@", project.version
+    replace "@MCVERSION@", mc_version
     replaceIn "BossTimerMod.java"
 
     mappings = project.mappings_version
