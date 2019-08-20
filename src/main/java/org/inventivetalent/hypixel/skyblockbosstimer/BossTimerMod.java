@@ -13,10 +13,11 @@ import org.apache.logging.log4j.Logger;
 	 version = BossTimerMod.VERSION)
 public class BossTimerMod {
 
-	public static final String MODID     = "skyblockbosstimer";
-	public static final String NAME      = "Hypixel Skyblock Boss Timer";
-	public static final String VERSION   = "@VERSION@";
-	public static final String MCVERSION = "@MCVERSION@";
+	public static final String MODID      = "skyblockbosstimer";
+	public static final String NAME       = "Hypixel Skyblock Boss Timer";
+	public static final String VERSION    = "@VERSION@";
+	public static final String MODVERSION = "@MODVERSION@";
+	public static final String MCVERSION  = "@MCVERSION@";
 
 	public static Logger logger;
 
