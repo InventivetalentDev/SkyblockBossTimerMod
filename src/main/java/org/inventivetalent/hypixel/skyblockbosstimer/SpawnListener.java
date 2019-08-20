@@ -6,11 +6,10 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.monster.EntityMagmaCube;
 import net.minecraft.entity.monster.EntitySlime;
-import net.minecraft.util.text.ChatType;
-import net.minecraft.util.text.Style;
-import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.event.ClickEvent;
+import net.minecraft.event.ClickEvent;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.ChatStyle;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -53,13 +52,12 @@ public class SpawnListener {
 			gotDeathMessage = false;
 
 			if (mod.updateAvailable) {
-				Minecraft.getMinecraft().ingameGUI.addChatMessage(ChatType.CHAT,
-						new TextComponentString(" "));
-				Minecraft.getMinecraft().ingameGUI.addChatMessage(ChatType.CHAT,
-						new TextComponentString("There's an update available for the SkyblockBossTimerMod!").setStyle(new Style().setColor(TextFormatting.YELLOW)));
-				Minecraft.getMinecraft().ingameGUI.addChatMessage(ChatType.CHAT,
-						new TextComponentString("Get it here").setStyle(new Style().setColor(TextFormatting.YELLOW).setUnderlined(true)
-								.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://hypixel.inventivetalent.org/skyblock-magma-timer/mod"))));
+				Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(" "));
+				Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(
+						new ChatComponentText("There's an update available for the SkyblockBossTimerMod!").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.YELLOW)));
+				Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(
+						new ChatComponentText("Get it here").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.YELLOW).setUnderlined(true)
+								.setChatClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://hypixel.inventivetalent.org/skyblock-magma-timer/mod"))));
 			}
 		} else if (entity instanceof EntityLiving) {
 			if (mod.util.onSkyblock) {
