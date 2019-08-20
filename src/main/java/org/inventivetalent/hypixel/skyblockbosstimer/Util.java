@@ -105,6 +105,38 @@ public class Util {
 		}).start();
 	}
 
+	public void checkUpdate() {
+		new Thread(() -> {
+			BossTimerMod.logger.info("Checking for updates");
+
+			try {
+				URL url = new URL("https://raw.githubusercontent.com/InventivetalentDev/SkyblockBossTimerMod/" + BossTimerMod.MCVERSION + "/gradle.properties");
+				HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+				connection.setRequestMethod("GET");
+				connection.setRequestProperty("User-Agent", "BossTimerMod/" + BossTimerMod.VERSION);
+
+				String updateVersion = null;
+				try (BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+					String line;
+					while ((line = in.readLine()) != null) {
+						//							BossTimerMod.logger.debug(line);
+						if (line.startsWith("mod_version")) {
+							updateVersion = line.split("=")[1];
+							break;
+						}
+					}
+				}
+
+				if (!BossTimerMod.VERSION.equals(updateVersion)) {
+					BossTimerMod.logger.info("Update Available: " + updateVersion + " (currently " + BossTimerMod.VERSION + ")");
+					mod.updateAvailable = true;
+				}
+			} catch (IOException e) {
+				BossTimerMod.logger.error("Failed to check for updates", e);
+			}
+		}).start();
+	}
+
 	private void doPost(HttpURLConnection connection, String postString) throws IOException {
 		connection.setDoOutput(true);
 		try (DataOutputStream out = new DataOutputStream(connection.getOutputStream())) {

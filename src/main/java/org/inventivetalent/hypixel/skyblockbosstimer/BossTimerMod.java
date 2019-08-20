@@ -13,9 +13,10 @@ import org.apache.logging.log4j.Logger;
 	 version = BossTimerMod.VERSION)
 public class BossTimerMod {
 
-	public static final String MODID   = "skyblockbosstimer";
-	public static final String NAME    = "Hypixel Skyblock Boss Timer";
-	public static final String VERSION = "@VERSION@";
+	public static final String MODID     = "skyblockbosstimer";
+	public static final String NAME      = "Hypixel Skyblock Boss Timer";
+	public static final String VERSION   = "@VERSION@";
+	public static final String MCVERSION = "@MCVERSION@";
 
 	public static Logger logger;
 
@@ -29,9 +30,14 @@ public class BossTimerMod {
 	public String lastEvent     = "none";
 	public long   lastEventTime = 0;
 
+	public boolean updateAvailable = false;
+
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		logger = event.getModLog();
+
+		logger.info("Mod Version: " + VERSION);
+		logger.info("Minecraft Version: " + MCVERSION);
 	}
 
 	@Mod.EventHandler
@@ -45,6 +51,8 @@ public class BossTimerMod {
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		ClientCommandHandler.instance.registerCommand(new TimerCommand(this));
+
+		util.checkUpdate();
 	}
 
 }
