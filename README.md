@@ -7,7 +7,9 @@ This acts as a client for the [Magma Boss Tracker website](https://hypixel.inven
 It also adds a simple time info UI.  
 ![](https://yeleha.co/2TwDnEX)   
 NOTE: The UI is only visible if you're in the Blazing Fortress or the spawn is estimated to happen in less than 20 minutes.  
-If you want to check it manually, just open the debug menu (F3) and you'll see it on the right.   
+If you want to check it manually, just open the debug menu (F3) and you'll see it on the right.
+
+The mod automatically sends the spawning of waves to the website if you are in the blazing fortress when they spawn.
 
 
 ## Options
