@@ -9,6 +9,8 @@ It also adds a simple time info UI.
 NOTE: The UI is only visible if you're in the Blazing Fortress or the spawn is estimated to happen in less than 20 minutes.  
 If you want to check it manually, just open the debug menu (F3) and you'll see it on the right.
 
+The mod automatically sends the spawning of waves to the website if you are in the blazing fortress when they spawn.
+
 
 ## Options
 You can change the mod's option, including the UI position in the Mod Options provided by Forge (Pause Menu -> Mod Options)
