@@ -14,3 +14,12 @@ The mod automatically sends the spawning of waves to the website if you are in t
 
 ## Options
 You can change the mod's option, including the UI position in the Mod Options provided by Forge (Pause Menu -> Mod Options)
+
+
+
+### Supported by YourKit
+YourKit supports open source projects with innovative and intelligent tools
+for monitoring and profiling Java and .NET applications.
+YourKit is the creator of <a href="https://www.yourkit.com/java/profiler/">YourKit Java Profiler</a>,
+<a href="https://www.yourkit.com/.net/profiler/">YourKit .NET Profiler</a>,
+and <a href="https://www.yourkit.com/youmonitor/">YourKit YouMonitor</a>.
